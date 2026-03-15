@@ -1,120 +1,25 @@
-# ragfolio
+# Ragfolio2
 
-## Resume RAG – CLI
+One project: frontend (React + Vite + Tailwind), backend (FastAPI), and RAG (uv library).
 
-- Navigate to the `rag/` directory:
+## Layout
 
-  ```bash
-  cd rag
-  ```
+- **frontend/** — React app; dev server on port 5000; all API calls go to `/api/*` (proxied to backend).
+- **backend/** — FastAPI app on port 8000; `GET /health`, `POST /ask`.
+- **rag/** — uv package (chromadb, fastembed, requests); for use by backend.
 
-- Ensure `resume.txt` contains the resume you want to query.
-- Install Python dependencies:
+## Run
 
-  ```bash
-  pip install -r requirements.txt
-  ```
+1. **Backend** (terminal 1):
+   ```bash
+   cd backend && uv run python main.py
+   ```
+   Listens on http://localhost:8000.
 
-- Build the vector store (ChromaDB) from the resume:
+2. **Frontend** (terminal 2):
+   ```bash
+   cd frontend && npm install && npm run dev
+   ```
+   App at http://localhost:5000. Requests to `/api/health` and `/api/ask` are proxied to the backend.
 
-  ```bash
-  python ingest.py
-  ```
-
-- Export your Gemini API key (you already have it in `.env`, but for a shell session you can run):
-
-  ```bash
-  export GEMINI_API_KEY="YOUR_API_KEY_HERE"
-  ```
-
-- Start the CLI chatbot:
-
-  ```bash
-  python main.py
-  ```
-
-Then ask questions like:
-
-- `What projects has this person worked on?`
-- `What are their strongest skills?`
-- `Summarize their experience.`
-
-All answers are generated using the retrieved resume context.
-
-## Resume RAG – FastAPI backend
-
-- Navigate to the backend directory:
-
-  ```bash
-  cd project/backend
-  ```
-
-- Install backend dependencies:
-
-  ```bash
-  pip install -r requirements.txt
-  ```
-
-- Make sure you have already run `python ingest.py` in `rag/` so that the ChromaDB directory exists (the backend points to `rag/chroma_db`).
-- Ensure `GEMINI_API_KEY` is set in your environment.
-- Start the API server:
-
-  ```bash
-  uvicorn main:app --reload
-  ```
-
-The backend exposes:
-
-- `POST /ask` with JSON body:
-
-  ```json
-  {
-    "question": "What projects has this student built?"
-  }
-  ```
-
-It returns:
-
-```json
-{
-  "answer": "AI response"
-}
-```
-
-## Resume RAG – React + Vite + Tailwind frontend
-
-- Navigate to the frontend directory:
-
-  ```bash
-  cd project/frontend
-  ```
-
-- Install dependencies:
-
-  ```bash
-  npm install
-  ```
-
-- (Optional) Configure a custom backend URL via Vite env:
-
-  ```bash
-  # .env.local in project/frontend or exported before npm run dev
-  VITE_API_URL="http://localhost:8000/ask"
-  ```
-
-  If you do not set this, the frontend defaults to `http://localhost:8000/ask`.
-
-- Start the Vite dev server:
-
-  ```bash
-  npm run dev
-  ```
-
-- Open the printed local URL (typically `http://localhost:5173`) in your browser.
-
-You will see a centered chat interface:
-
-- Input box and send button.
-- Message history with user messages on the right and AI responses on the left.
-- All answers are produced by calling the FastAPI backend, which runs the RAG retrieval over the resume and then calls Gemini.
-
+Optionally install RAG for development: `cd rag && uv sync`.

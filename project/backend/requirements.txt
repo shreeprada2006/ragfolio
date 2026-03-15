@@ -1,6 +1,0 @@
-fastapi
-uvicorn[standard]
-chromadb
-fastembed
-python-dotenv
-requests

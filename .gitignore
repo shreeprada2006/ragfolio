@@ -1,23 +1,37 @@
-# Environment files
-.env
-*.env
-rag/.env
-project/backend/.env
-
 # Python
 __pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-.pytest_cache/
-.mypy_cache/
-
-# Node / frontend
-node_modules/
-project/frontend/node_modules/
+*.py[oc]
+build/
 dist/
-project/frontend/dist/
+wheels/
+*.egg-info
+.venv
 
-# ChromaDB and other data
+# Node
+node_modules
+dist
+dist-ssr
+*.local
 
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Env
+.env
