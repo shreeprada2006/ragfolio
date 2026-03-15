@@ -4,7 +4,7 @@ from typing import List
 import chromadb
 import requests
 from dotenv import load_dotenv
-from sentence_transformers import SentenceTransformer
+from fastembed import TextEmbedding
 
 
 BASE_DIR = os.path.dirname(__file__)
@@ -12,7 +12,8 @@ ENV_PATH = os.path.join(BASE_DIR, ".env")
 if os.path.exists(ENV_PATH):
     load_dotenv(ENV_PATH)
 
-EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
+# Must match rag/ingest.py (lightweight ONNX model)
+EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
 # Point to the same Chroma DB created by rag/ingest.py
 CHROMA_DB_DIR = os.path.join(
     BASE_DIR,
@@ -28,14 +29,14 @@ GEMINI_API_URL = (
 )
 
 
-_embedding_model: SentenceTransformer | None = None
+_embedding_model: TextEmbedding | None = None
 _chroma_collection = None
 
 
-def _get_embedding_model() -> SentenceTransformer:
+def _get_embedding_model() -> TextEmbedding:
     global _embedding_model
     if _embedding_model is None:
-        _embedding_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
+        _embedding_model = TextEmbedding(model_name=EMBEDDING_MODEL_NAME)
     return _embedding_model
 
 
@@ -55,7 +56,7 @@ def retrieve_context(question: str, top_k: int = 3) -> List[str]:
     model = _get_embedding_model()
     collection = _get_chroma_collection()
 
-    query_embedding = model.encode([question])[0]
+    query_embedding = next(model.embed([question]))
     result = collection.query(
         query_embeddings=[query_embedding.tolist()],
         n_results=top_k,
@@ -64,7 +65,6 @@ def retrieve_context(question: str, top_k: int = 3) -> List[str]:
     documents = result.get("documents") or []
     if not documents:
         return []
-
     return documents[0]
 
 
@@ -106,6 +106,9 @@ def call_gemini(prompt: str) -> str:
             }
         ]
     }
+
+    print("--- GEMINI INPUT (prompt sent to API) ---")
+    print("--- END GEMINI INPUT ---")
 
     response = requests.post(GEMINI_API_URL, headers=headers, json=body, timeout=30)
     response.raise_for_status()

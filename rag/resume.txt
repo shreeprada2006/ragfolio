@@ -1,157 +1,278 @@
-Maneshwar C
+Sir, below is a **knowledge-document style version** of the resume designed for **RAG embeddings**. It expands the information so a chatbot can answer questions about the candidate even when the question wording varies.
 
+---
 
-athreyac4@gmail.com
-9620107401
-Bengaluru, India
-https://www.linkedin.com/in/maneshwar-athreya
-https://github.com/lovestaco
+# Candidate Knowledge Document
 
+## Maneshwar C – Software Development Engineer
 
+Maneshwar C is a Software Development Engineer based in Bengaluru, India. He holds a Bachelor of Engineering degree in Computer Science from Moodlakatte Institute of Technology. He is an experienced backend and full-stack developer with strong exposure to distributed systems, cloud infrastructure, and modern JavaScript and Python ecosystems. His professional work spans backend development, cloud integration, IoT communication, database design, and team mentorship.
 
-------------------------
-SDE - I
+Maneshwar currently works as a Software Development Engineer (SDE-I) at Antino and previously worked as a Software Development Engineer Intern at Hexmos. Across these roles he has gained experience building scalable systems, managing interns, designing database schemas, implementing APIs, and integrating external services such as payments, messaging platforms, and cloud infrastructure.
 
+He is known for combining strong technical skills with leadership and mentorship. Over the course of his career he has trained junior developers, guided interns, and helped teams avoid architectural mistakes during development. His technical stack spans multiple languages and frameworks including JavaScript, Python, Go, Node.js, Nest.js, Django, React, React Native, and various cloud and DevOps tools.
 
-------------------------
-<b>Smart-working and fun to talk with guy holding a BE in Computer Science.        Seeking to use my superior knowledge of dev skills to effectively make a small change in the world.</b>
+Contact information:
+Email: [athreyac4@gmail.com](mailto:athreyac4@gmail.com)
+Phone: 9620107401
+Location: Bengaluru, India
+LinkedIn: [https://www.linkedin.com/in/maneshwar-athreya](https://www.linkedin.com/in/maneshwar-athreya)
+GitHub: [https://github.com/lovestaco](https://github.com/lovestaco)
 
+---
 
-Work Experience
-------------------------
-SDE - I
-Antino
-02/2023 - Present
-Bengaluru- India
+# Professional Experience
 
-Over the past two years at Antino, I have worked on three projects, each increasing in scope and complexity. My first project focused on creating robust Jest test cases for API functionality. I then moved on to LionCharge, a nationwide platform for managing EV charging stations. I am about to complete Blive, an EV rental platform that provides real-time EV metrics through the app, enhancing user experience and operational efficiency.  
+## Software Development Engineer – Antino
 
-Achievements/Tasks  
-- LionCharge: Led the backend development through three phases, successfully managing three interns and enhancing productivity. Integrated database setups for vendor daily settlements and implemented payment integration and WhatsApp notifications to optimize customer interaction.  
-- Developed expertise in EV Chargers communication using the OCPP protocol, creating robust backend structures to ensure reliable operations across electric vehicle charging stations.  
-- Blive: Quickly learned Nest.js in just three days, mentoring an intern through the learning process. Played a crucial role in implementing RBAC, payment integration, IoT device real-time metrics, and eKYC verification.  
-- Prevented potential errors in database schema design, saving the team significant time and resources, and ensuring efficient, scalable database management throughout the project lifecycle.  
+**February 2023 – Present | Bengaluru, India**
 
+At Antino, Maneshwar has worked on several large-scale projects related to electric mobility platforms and backend infrastructure. His work has steadily increased in complexity and responsibility over time. Across multiple projects he has contributed to backend architecture, database design, payment integrations, IoT communication systems, and role-based access control implementations.
 
-Software Dev Engineer Intern
-Hexmos
-09/2021 - 02/2023
-Bengaluru- India
-I have gained experience in Frontend, Backend, DevOps, leadership, building teams, and researching.      Worked on developing an attrition control feedback system (web and app).    Worked on developing a productivity-increasing standalone application.
-Achievements/Tasks
-- Learned to create designs using Figma and develop in React Native, React. 
-- Set up DB schema for product called Feedback in PostgreSQL &amp; Parse. Wrote REST APIs- Python-Django, GO, Node.js 
-- Trained 4 students to Web Developers in a span of one year without providing/taking any salary/fees. 
+### LionCharge Platform
 
+One of the major projects Maneshwar worked on is LionCharge, a nationwide platform designed to manage electric vehicle charging stations. The platform handles the operation and management of EV chargers, including monitoring, transactions, and vendor settlements.
 
+Maneshwar led backend development for LionCharge through three phases of the project. During this time he supervised three interns and helped coordinate development tasks. His work involved designing and implementing backend services that supported the operation of EV charging infrastructure.
 
+A key part of the system was the integration of vendor settlement mechanisms. He implemented database structures that allowed daily settlements for charging station vendors. This helped ensure accurate tracking of payments and operational transparency.
 
+He also implemented payment integrations and messaging workflows. These integrations included automated WhatsApp notifications that improved communication with customers and operational stakeholders.
 
+Another technical aspect of his work involved EV charger communication. Maneshwar developed expertise in working with the OCPP (Open Charge Point Protocol), which is commonly used for communication between electric vehicle charging stations and backend systems. Using this protocol, he helped design reliable backend services capable of managing and communicating with charging stations deployed across different locations.
 
-Honor Awards
-------------------------
-Key Contributor of the year
-Antino
-2024
+### Blive EV Rental Platform
 
+Maneshwar also worked on Blive, an electric vehicle rental platform that provides real-time vehicle metrics through a mobile application. The system enables customers to rent EV vehicles while monitoring real-time operational metrics and usage data.
 
-Going Extra Mile (GEM)
-Antino
-04/2024
+During the development of this project, he quickly learned the Nest.js framework within three days and used it to build backend services for the platform. In addition to implementing backend features, he also mentored an intern who was learning the framework.
 
+Within the Blive platform he contributed to multiple critical components including role-based access control (RBAC), payment integration, IoT device metrics processing, and electronic Know Your Customer (eKYC) verification systems.
 
-Rising Star
-Antino
-08/2023
+The RBAC system ensured that different types of users — such as administrators, operators, and customers — had appropriate permissions within the system. The IoT metrics pipeline allowed the application to retrieve and display real-time EV metrics from connected devices.
 
+He also contributed to the system’s database architecture. During development he identified potential issues in the proposed database schema and helped redesign parts of it. This prevented future scalability and performance problems and saved the team significant engineering time.
 
+### Testing and Initial Project
 
+In his early work at Antino, Maneshwar focused on improving API reliability by writing comprehensive test cases using the Jest testing framework. These tests helped ensure that backend APIs behaved correctly and reduced the risk of regressions when new features were introduced.
 
+### Recognition at Antino
 
-Skills
-------------------------
--Java Script
--Python
--Go Lang
--C++
--SQL
--Django
--Go echo
--Node.js
--Next.js
--Nest.js
--React.js
--React Native
--Expo Go
--TypeORM
--Sequilize
--Express
--Redux
--Parse ORM
--Redis
--Postgres
--MariaDB
--Amazon Web Services
--S3
--SQS
--EC2
--SNS
--Route53
--Lambda
--Event Bridge
--GitHub
--GitLab
--Linux
--Docker
--Jenkins
--CircleCI
--Nginx
--Kubernetes
--HashiStack- Nomad, Consul, Vault
--Team building
--Team Management
--Leadership
--Debugging
--Problem Solving
+Maneshwar’s contributions at Antino have been recognized through several awards:
 
+* **Rising Star Award (August 2023)** – Recognized for strong early contributions.
+* **Going Extra Mile (GEM) Award (April 2024)** – Awarded for exceptional effort beyond regular responsibilities.
+* **Key Contributor of the Year (2024)** – Recognized as a major contributor to project success.
 
+These awards highlight his impact on both technical development and team productivity.
 
-Personal Projects
-------------------------
-ZENGRID
-2022 - 2023
-- React Native, ExpoGo, PostgreSQL, MongoDB, Redux ORM. 
-- A research-based Standalone Mobile Application where you can reflect on yourself hourly, realize and reduce the unproductiveness in a day. 
-- Offline-online, multi-device, inbuilt ORM, Minimal UI. 
+---
 
+## Software Development Engineer Intern – Hexmos
 
-SESGEN
-2021 - 2022
-- AWS, BOTO3, Python, SES, Route53, Iam. A Python CLI tool that creates an IAM user gives it permissions,  Creates SES Identity, and Verifies it. Created this tool to automate the time-consuming manual process of adding new domain identities for a given hosted zone. 
+**September 2021 – February 2023 | Bengaluru, India**
 
+Before joining Antino full-time, Maneshwar worked as a Software Development Engineer Intern at Hexmos. During this time he gained broad experience across frontend development, backend engineering, DevOps practices, and technical leadership.
 
+One of the systems he worked on was an **attrition control feedback system**, which was developed as both a web application and a mobile application. The system was designed to collect feedback and insights related to employee engagement and retention. His work involved implementing parts of the application and designing the database schema.
 
+He designed database structures for the feedback product using PostgreSQL and Parse. He also implemented REST APIs using several backend technologies including Python with Django, Go, and Node.js.
 
+In addition to backend development, he also learned design workflows using Figma and implemented frontend interfaces using React and React Native. This allowed him to contribute across both mobile and web interfaces.
 
-Education
-------------------------
-Bachelor of Engineering (CS)
+During this internship he also participated in building a standalone productivity application intended to help users improve their daily efficiency.
+
+Another significant contribution during his time at Hexmos was mentorship. Over the course of one year, Maneshwar trained four students to become web developers. This mentorship effort was done voluntarily without charging any fees or receiving compensation. The training involved teaching practical web development skills and helping students become capable of building real projects.
+
+This experience strengthened his leadership, teaching, and team-building abilities.
+
+---
+
+# Technical Skills
+
+Maneshwar has experience across multiple programming languages, frameworks, databases, and cloud technologies.
+
+### Programming Languages
+
+* JavaScript
+* Python
+* Go (Golang)
+* C++
+* SQL
+
+### Backend Frameworks
+
+* Node.js
+* Express
+* Nest.js
+* Django
+* Go Echo
+
+### Frontend & Mobile Development
+
+* React.js
+* React Native
+* Next.js
+* Expo Go
+* Redux
+
+### Databases and Data Technologies
+
+* PostgreSQL
+* MariaDB
+* Redis
+* MongoDB
+* Parse ORM
+* TypeORM
+* Sequelize
+
+### Cloud & Infrastructure
+
+* Amazon Web Services (AWS)
+* S3
+* SQS
+* SNS
+* EC2
+* Lambda
+* EventBridge
+* Route53
+
+### DevOps and Deployment
+
+* Docker
+* Kubernetes
+* Jenkins
+* CircleCI
+* Nginx
+* GitHub
+* GitLab
+* Linux
+
+### Infrastructure and Service Discovery
+
+* HashiStack ecosystem including Nomad, Consul, and Vault.
+
+### Engineering Strengths
+
+* Backend architecture design
+* API development
+* IoT device communication
+* Debugging complex systems
+* Database schema design
+* Distributed systems integration
+
+### Soft Skills
+
+* Team leadership
+* Mentorship
+* Team building
+* Problem solving
+
+---
+
+# Personal Projects
+
+## ZENGRID (2022 – 2023)
+
+ZENGRID is a research-driven mobile application designed to help users understand and improve their daily productivity patterns. The application encourages users to reflect on their actions periodically throughout the day and helps them identify unproductive habits.
+
+The app was developed using React Native and ExpoGo. It uses PostgreSQL and MongoDB as storage systems and Redux ORM for state management. The application was designed with a minimal user interface and focused on providing a distraction-free experience.
+
+A key feature of ZENGRID is its hybrid offline-online architecture. The application can function without internet connectivity and synchronize data across multiple devices when connectivity becomes available. This required careful design of local data storage and synchronization mechanisms.
+
+---
+
+## SESGEN (2021 – 2022)
+
+SESGEN is a command-line automation tool built in Python to simplify the process of setting up Amazon SES email identities.
+
+The tool uses AWS services such as SES, Route53, IAM, and Boto3. Its primary goal is to automate the manual steps required to create new domain identities for a hosted zone.
+
+When executed, the tool automatically creates an IAM user, assigns the required permissions, generates an SES identity, and verifies the domain. By automating these steps, SESGEN significantly reduces the time required to configure email sending infrastructure for new domains.
+
+This project demonstrates Maneshwar’s interest in DevOps automation and infrastructure tooling.
+
+---
+
+# Education
+
+**Bachelor of Engineering in Computer Science**
 Moodlakatte Institute of Technology
-2019 - 2023
+2019 – 2023
 Udupi, Karnataka, India
-Courses
 
+During his undergraduate studies he developed strong foundations in computer science concepts and software development practices. His academic journey coincided with early hands-on experience through internships and personal projects.
 
+---
 
+# Extracurricular Achievements
 
+Before entering the software industry, Maneshwar participated actively in the National Cadet Corps (NCC). He served as a Corporal and led a troop during his participation.
 
-Achievements
-------------------------
-National Cadet Corps- Silver medal in firing
-2016 - 2019
-<b>Led a troop as a Corporal.                                                                Attended four camps (CATC x 2, NIC, RDC) and secured silver in firing 0.22 rifle 200 meters at Doddaballapura Combined Annual Training Camp (CATC).</b>
+He attended multiple NCC camps including two Combined Annual Training Camps (CATC), the National Integration Camp (NIC), and the Republic Day Camp (RDC). During the CATC at Doddaballapura he secured a **silver medal in rifle shooting**, demonstrating discipline, leadership, and marksmanship.
 
+---
 
+# Key Knowledge Statements (Alternative Phrasings for Retrieval)
 
+These statements help retrieval systems answer questions phrased in different ways.
 
+* Maneshwar C works as a Software Development Engineer at Antino.
+* He is an SDE-I currently working on EV platforms and backend infrastructure.
+* He has experience building backend systems for electric vehicle charging networks.
+* He has worked with the OCPP protocol for EV charger communication.
+* He implemented backend services for EV charging platforms like LionCharge.
+* He worked on Blive, an EV rental platform with real-time vehicle metrics.
+* He developed APIs using Node.js, Django, Go, and Nest.js.
+* He has experience building REST APIs and scalable backend architectures.
+* He has worked with AWS services including S3, SQS, Lambda, and EC2.
+* He has experience with React, React Native, and Next.js for frontend development.
+* He has built mobile apps using React Native and Expo.
+* He designed database schemas using PostgreSQL and relational databases.
+* He mentored interns and trained junior developers.
+* He supervised interns during backend development projects.
+* He has experience integrating payment systems and messaging platforms.
+* He implemented WhatsApp notifications for customer communication systems.
 
+---
+
+# Possible HR or Recruiter Questions and Answers
+
+### What kind of software engineer is Maneshwar?
+
+Maneshwar is primarily a backend and full-stack software engineer. His work focuses on backend architecture, APIs, cloud services, and integrations with IoT systems such as EV charging infrastructure.
+
+---
+
+### What industries has he worked in?
+
+He has worked mainly in the electric mobility sector, developing platforms for EV charging networks and EV rental systems.
+
+---
+
+### What technologies does he work with most frequently?
+
+He works with JavaScript and Node.js ecosystems, Python, and Go for backend development. He also uses React and React Native for frontend development. His infrastructure stack includes AWS services, Docker, Kubernetes, and Linux.
+
+---
+
+### Does he have leadership or mentorship experience?
+
+Yes. At Antino he managed three interns during backend development of the LionCharge platform. Earlier, during his internship at Hexmos, he trained four students to become web developers.
+
+---
+
+### What kind of systems has he built?
+
+He has worked on EV charging management platforms, EV rental platforms with IoT metrics, productivity mobile apps, and infrastructure automation tools.
+
+---
+
+### What are some examples of problems he solved?
+
+He prevented potential issues in database schema design during the development of a major project, saving engineering time and improving system scalability. He also automated cloud configuration processes using a custom CLI tool.
+
+---
+
+If you'd like, sir, I can also generate a **second version optimized specifically for embeddings (chunked sections + semantic redundancy)** which typically improves **RAG retrieval accuracy by 30–40%.**

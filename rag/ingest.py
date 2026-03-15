@@ -2,12 +2,16 @@ import os
 from typing import List
 
 import chromadb
-from sentence_transformers import SentenceTransformer
+from fastembed import TextEmbedding
 
 
-EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
+# Lightweight ONNX model (no PyTorch/transformers); 384 dims
+EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
 CHROMA_DB_DIR = os.path.join(os.path.dirname(__file__), "chroma_db")
 COLLECTION_NAME = "resume_chunks"
+# Process embeddings and DB writes in batches to handle large resumes
+ENCODE_BATCH_SIZE = 32
+DB_ADD_BATCH_SIZE = 100
 
 
 def chunk_text(text: str, max_chars: int = 500) -> List[str]:
@@ -82,10 +86,15 @@ def build_vector_store(resume_path: str = None) -> None:
     print(f"Loaded resume with {len(text)} characters.")
     print(f"Created {len(chunks)} chunks.")
 
-    model = SentenceTransformer(EMBEDDING_MODEL_NAME)
+    model = TextEmbedding(model_name=EMBEDDING_MODEL_NAME)
 
-    print("Computing embeddings...")
-    embeddings = model.encode(chunks, show_progress_bar=True)
+    print("Computing embeddings in batches...")
+    all_embeddings: List[List[float]] = []
+    for start in range(0, len(chunks), ENCODE_BATCH_SIZE):
+        batch = chunks[start : start + ENCODE_BATCH_SIZE]
+        for emb in model.embed(batch):
+            all_embeddings.append(emb.tolist())
+        print(f"  Encoded chunks {start + 1}-{min(start + ENCODE_BATCH_SIZE, len(chunks))} of {len(chunks)}")
 
     os.makedirs(CHROMA_DB_DIR, exist_ok=True)
     client = chromadb.PersistentClient(path=CHROMA_DB_DIR)
@@ -97,16 +106,20 @@ def build_vector_store(resume_path: str = None) -> None:
     if collection.count() > 0:
         collection.delete(where={})
 
-    ids = [f"chunk-{i}" for i in range(len(chunks))]
-    metadatas = [{"index": i} for i in range(len(chunks))]
-
-    print("Storing embeddings in ChromaDB...")
-    collection.add(
-        ids=ids,
-        documents=chunks,
-        embeddings=embeddings.tolist(),
-        metadatas=metadatas,
-    )
+    print("Storing embeddings in ChromaDB in batches...")
+    for start in range(0, len(chunks), DB_ADD_BATCH_SIZE):
+        end = min(start + DB_ADD_BATCH_SIZE, len(chunks))
+        batch_ids = [f"chunk-{i}" for i in range(start, end)]
+        batch_docs = chunks[start:end]
+        batch_embeddings = all_embeddings[start:end]
+        batch_metadatas = [{"index": i} for i in range(start, end)]
+        collection.add(
+            ids=batch_ids,
+            documents=batch_docs,
+            embeddings=batch_embeddings,
+            metadatas=batch_metadatas,
+        )
+        print(f"  Stored chunks {start + 1}-{end} of {len(chunks)}")
 
     print(f"Stored {len(chunks)} chunks in ChromaDB at {CHROMA_DB_DIR}.")
 

@@ -3,10 +3,11 @@ from typing import List
 
 import chromadb
 import requests
-from sentence_transformers import SentenceTransformer
+from fastembed import TextEmbedding
 
 
-EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
+# Must match rag/ingest.py (lightweight ONNX model)
+EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
 CHROMA_DB_DIR = os.path.join(os.path.dirname(__file__), "chroma_db")
 COLLECTION_NAME = "resume_chunks"
 GEMINI_API_URL = (
@@ -15,14 +16,14 @@ GEMINI_API_URL = (
 )
 
 
-_embedding_model: SentenceTransformer | None = None
+_embedding_model: TextEmbedding | None = None
 _chroma_collection = None
 
 
-def _get_embedding_model() -> SentenceTransformer:
+def _get_embedding_model() -> TextEmbedding:
     global _embedding_model
     if _embedding_model is None:
-        _embedding_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
+        _embedding_model = TextEmbedding(model_name=EMBEDDING_MODEL_NAME)
     return _embedding_model
 
 
@@ -42,7 +43,7 @@ def retrieve_context(question: str, top_k: int = 3) -> List[str]:
     model = _get_embedding_model()
     collection = _get_chroma_collection()
 
-    query_embedding = model.encode([question])[0]
+    query_embedding = next(model.embed([question]))
     result = collection.query(
         query_embeddings=[query_embedding.tolist()],
         n_results=top_k,
