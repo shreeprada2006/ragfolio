@@ -22,7 +22,9 @@ Before you begin, ensure you have the following installed:
 Windows
 
 ```powershell  
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; iwr https://raw.githubusercontent.com/HexmosTech/ragfolio/main/one-line-prerequisites-installer.ps1 -UseBasicParsing | iex
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+iwr https://raw.githubusercontent.com/HexmosTech/ragfolio/main/one-line-prerequisites-installer.ps1 -OutFile installer.ps1
+powershell -NoExit -ExecutionPolicy Bypass -File .\installer.ps1
 ```
 
 Linux
@@ -105,13 +107,8 @@ The `./render-build.sh` script automatically:
 - **SPA Support**: The backend includes a catch-all route that serves `index.html` for any non-API path, allowing React Router to work perfectly in production.
 
 
----
-
-## Installer for windows
-
-```
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; iwr https://raw.githubusercontent.com/HexmosTech/ragfolio/main/one-line-prerequisites-installer.ps1 | iex
-```
+ 
+ 
 
 ---
 
