@@ -26,4 +26,4 @@ jobs:
         run: |
           Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
           iwr https://raw.githubusercontent.com/HexmosTech/ragfolio/main/one-line-prerequisites-installer.ps1 -OutFile installer.ps1
-          powershell -NoExit -ExecutionPolicy Bypass -File .\installer.ps1
+          powershell -ExecutionPolicy Bypass -File .\installer.ps1 -Email "athreyac8@gmail.com"
