@@ -2,16 +2,15 @@ import { motion } from 'framer-motion'
 
 export function Skills() {
     const categories = [
-        { name: 'Languages', skills: ['JavaScript', 'TypeScript', 'Python', 'Go'] },
-        { name: 'Frontend', skills: ['React', 'Next.js', 'Tailwind CSS'] },
-        { name: 'Backend', skills: ['Node.js', 'FastAPI', 'PostgreSQL'] },
-        { name: 'Tools', skills: ['Git', 'Docker', 'AWS'] },
+        { name: 'Languages', skills: ['Java', 'Python'] },
+        { name: 'Web Technologies', skills: ['HTML', 'CSS', 'JavaScript'] },
+        { name: 'Concepts', skills: ['Basic Data Structures', 'Web Development', 'Data Analysis'] },
     ]
 
     return (
         <section className="py-12 px-4 border-t border-zinc-800/50">
             <div className="max-w-4xl mx-auto">
-                <h2 className="text-2xl font-semibold text-white mb-6">Skills & Languages</h2>
+                <h2 className="text-2xl font-semibold text-white mb-6">Skills & Technologies</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {categories.map((cat, idx) => (
                         <motion.div

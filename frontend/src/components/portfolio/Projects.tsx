@@ -13,20 +13,10 @@ export function Projects() {
             whileHover={{ scale: 1.02 }}
             className="p-6 rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition-colors cursor-default"
           >
-            <h3 className="font-medium text-white text-lg">Project one</h3>
-            <p className="text-sm text-zinc-400 mt-2 leading-relaxed">Short description of the project and technologies used.</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            whileHover={{ scale: 1.02 }}
-            className="p-6 rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition-colors cursor-default"
-          >
-            <h3 className="font-medium text-white text-lg">Project two</h3>
-            <p className="text-sm text-zinc-400 mt-2 leading-relaxed">Short description of the project and technologies used.</p>
+            <h3 className="font-medium text-white text-lg">Multimodal Deepfake Detection</h3>
+            <p className="text-sm text-zinc-400 mt-2 leading-relaxed">
+              Developed a system to detect deepfake content using images, videos, and audio. Utilized Python and machine learning techniques for data preprocessing, feature extraction, and model implementation.
+            </p>
           </motion.div>
         </div>
       </div>

@@ -1,75 +1,110 @@
-import { useState, useRef, useEffect } from 'react'
-import { ChatMessage } from './ChatMessage'
-import { ChatInput } from './ChatInput'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react';
+import { ChatMessage } from './ChatMessage';
+import { ChatInput } from './ChatInput';
+import { motion, AnimatePresence } from 'framer-motion';
 
-type Message = { role: 'user' | 'assistant'; content: string }
+type Message = { role: 'user' | 'assistant'; content: string };
 
 export function Chatbot() {
-  const [messages, setMessages] = useState<Message[]>([])
-  const [loading, setLoading] = useState(false)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [backendStatus, setBackendStatus] = useState<'Online' | 'Offline'>('Offline');
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '/api';
 
   const scrollToBottom = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTo({
         top: scrollContainerRef.current.scrollHeight,
-        behavior: 'smooth'
-      })
+        behavior: 'smooth',
+      });
     }
-  }
+  };
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages, loading])
+    scrollToBottom();
+  }, [messages, loading]);
+
+  const checkBackendHealth = async () => {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
+
+      const response = await fetch(`${apiBaseUrl}/health`, {
+        method: 'GET',
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeout);
+
+      if (response.ok) {
+        setBackendStatus('Online');
+      } else {
+        setBackendStatus('Offline');
+      }
+    } catch {
+      setBackendStatus('Offline');
+    }
+  };
+
+  useEffect(() => {
+    checkBackendHealth();
+    const interval = setInterval(checkBackendHealth, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSend = async (content: string) => {
-    if (!content.trim()) return
+    if (!content.trim()) return;
 
-    const userMessage: Message = { role: 'user', content }
-    setMessages((prev) => [...prev, userMessage])
-    setLoading(true)
+    const userMessage: Message = { role: 'user', content };
+    setMessages((prev) => [...prev, userMessage]);
+    setLoading(true);
 
     try {
-      // In production, the backend serves the frontend from the same origin, so we use a relative path
-      // In development, you would set VITE_API_BASE_URL=http://localhost:8000 in your .env
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '/api'
       const response = await fetch(`${apiBaseUrl}/ask`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ question: content }),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.detail || 'Failed to get an answer from the AI.')
+        throw new Error(data.detail || 'Failed to get an answer from the AI.');
       }
 
-      setMessages((prev) => [...prev, { role: 'assistant', content: data.answer }])
+      setMessages((prev) => [...prev, { role: 'assistant', content: data.answer }]);
     } catch (error: any) {
-      const errorMessage = error.message || 'Network error. Please make sure the backend is running.'
+      const errorMessage = error.message || 'Network error. Please make sure the backend is running.';
       setMessages((prev) => [
         ...prev,
         { role: 'assistant', content: `Sorry, I encountered an error: ${errorMessage}` },
-      ])
+      ]);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <section className="py-12 px-4 border-t border-zinc-800/50 relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
       <div className="max-w-4xl mx-auto">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold">Chatbot</h2>
+          <span className={`text-sm font-medium ${backendStatus === 'Online' ? 'text-green-500' : 'text-red-500'}`}>
+            Backend: {backendStatus}
+          </span>
+        </div>
+
         <motion.div
           layout
           initial={false}
           animate={{ height: messages.length === 0 ? 240 : 500 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           className="rounded-3xl border border-zinc-800 bg-zinc-900/40 backdrop-blur-xl overflow-hidden flex flex-col shadow-2xl shadow-blue-500/5 ring-1 ring-white/5"
         >
           <div
@@ -120,6 +155,5 @@ export function Chatbot() {
         </motion.div>
       </div>
     </section>
-
-  )
+  );
 }
