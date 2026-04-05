@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 try:
     from .rag_query import answer_question
 except ImportError:
@@ -81,9 +81,26 @@ async def ask(request: AskRequest):
         logger.debug(f"Incoming question: {request.question}")
 
         # Integrate with the RAG query engine
-        answer = answer_question(request.question)
+        # Enhanced to include debug information if available
+        answer: Optional[str] = None
+        debug_info: Optional[Dict[str, Any]] = None
 
-        # Log the response
+        try:
+            # Attempt to retrieve debug information if supported
+            result = answer_question(request.question, debug=True)
+            answer = result.get("answer")
+            debug_info = result.get("debug_info")
+        except TypeError:
+            # Fallback to non-debug mode if `debug` is not supported
+            answer = answer_question(request.question)
+
+        # Log detailed debug information if available
+        if debug_info:
+            logger.debug(f"Retrieved context items: {debug_info.get('retrieved_items')}")
+            logger.debug(f"Gemini input prompt: {debug_info.get('gemini_prompt')}")
+            logger.debug(f"Gemini output: {debug_info.get('gemini_output')}")
+
+        # Log the generated answer
         logger.debug(f"Generated answer: {answer}")
 
         return AskResponse(answer=answer)
